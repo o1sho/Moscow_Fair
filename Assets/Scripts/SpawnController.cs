@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class SpawnController : MonoBehaviour
 {
+    public static SpawnController instance { get; private set; }
+
     [SerializeField] private Transform[] _spawnPoints;
 
     //////
@@ -19,12 +21,19 @@ public class SpawnController : MonoBehaviour
 
     private GameObject _spawnedObject;
 
-    public float delaySpawn;
     public float gravityScale;
+
+    private void Awake()
+    {
+        if (instance == null)
+        {
+            instance = this;
+        }
+    }
 
     private void Start()
     {
-        //StartCoroutine(SpawnObject());
+        Spawn();
     }
 
     public void Spawn()
@@ -78,8 +87,6 @@ public class SpawnController : MonoBehaviour
 
     private void Update()
     {
-        if (_spawnedObject == null) Spawn();
-
         if (Input.GetKeyDown(KeyCode.S))
         {
             Spawn();
