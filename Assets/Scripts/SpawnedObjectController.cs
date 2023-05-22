@@ -13,6 +13,7 @@ public class SpawnedObjectController : MonoBehaviour
         if (collision.gameObject.tag == "Player" && gameObject.tag == "-")
         {
             Destroy(gameObject);
+            PlayerController.instance.health--;
             Debug.Log("Player take damage!");
         }
     }

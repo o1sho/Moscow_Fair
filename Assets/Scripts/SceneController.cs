@@ -7,4 +7,10 @@ public class SceneController : MonoBehaviour
     {
         SceneManager.LoadScene(indexScene);
     }
+
+    public void ResetScene()
+    {
+        int activeIndex = SceneManager.GetActiveScene().buildIndex;
+        SceneManager.LoadScene(activeIndex);
+    }
 }

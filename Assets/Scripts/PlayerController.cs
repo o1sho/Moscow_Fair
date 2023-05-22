@@ -4,7 +4,16 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
+    public static PlayerController instance;
+
     [SerializeField] private GameObject[] playersTurns;
+
+    public int health;
+
+    private void Awake()
+    {
+        instance = this;
+    }
 
     private void Start()
     {
