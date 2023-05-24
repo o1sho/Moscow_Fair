@@ -8,6 +8,7 @@ public class PlayerController : MonoBehaviour
 
     [SerializeField] private GameObject[] playersTurns;
 
+    [SerializeField] private GameObject[] healthPoints;
     public int health;
 
     private void Awake()
@@ -76,6 +77,18 @@ public class PlayerController : MonoBehaviour
                 playersTurns[i].SetActive(true);
             }
             else playersTurns[i].SetActive(false);
+        }
+    }
+
+    public void TakeDamage(int count)
+    {
+        health -= count;
+        for (int i = 0; i < healthPoints.Length; i++)
+        {
+            if (i < health)
+            {
+                healthPoints[i].SetActive(true);
+            } else healthPoints[i].SetActive(false);    
         }
     }
 }
