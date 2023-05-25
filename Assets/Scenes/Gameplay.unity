@@ -1455,9 +1455,15 @@ MonoBehaviour:
   - {fileID: 1586636790}
   objects:
   - platformPrefabs: {fileID: 4651935576250743700, guid: e03e4c6f6bb0c134994e3cced7f8ca37, type: 3}
-    spawnChance: 0.75
+    spawnChance: 0.4
+  - platformPrefabs: {fileID: 4651935576250743700, guid: 23dbfd4b1a38bf64ebd8edd884481cd6, type: 3}
+    spawnChance: 0.2
+  - platformPrefabs: {fileID: 4651935576250743700, guid: df062e287834dc043a0357aeb9f1ff1d, type: 3}
+    spawnChance: 0.1
+  - platformPrefabs: {fileID: 4651935576250743700, guid: c222daca1d0531c4e8e13debb6cc7a93, type: 3}
+    spawnChance: 0.1
   - platformPrefabs: {fileID: 4651935576250743700, guid: bb68b8f3516bb7e4389c958a7c0c3604, type: 3}
-    spawnChance: 0.25
+    spawnChance: 0.2
   gravityScale: -0.05
 --- !u!4 &552777659
 Transform:

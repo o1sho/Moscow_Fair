@@ -2,6 +2,7 @@ using UnityEngine;
 
 public class SpawnedObjectController : MonoBehaviour
 {
+
     private void OnCollisionEnter2D(Collision2D collision)
     {
 
@@ -14,6 +15,7 @@ public class SpawnedObjectController : MonoBehaviour
         {
             Destroy(gameObject);
             ScoreController.ScoreUp();
+            SaveObj(this.gameObject.name);
             Debug.Log("The +product catched! Player saved health and is awarded a point!");
         }
 
@@ -41,5 +43,30 @@ public class SpawnedObjectController : MonoBehaviour
             Destroy(gameObject);
             Debug.Log("The -product dropped... Player saved health!");
         }
+    }
+
+    private void SaveObj(string name)
+    {
+        switch (name)
+        {
+            case "+obj1(Clone)": 
+                Database.Instance.countObj1++;
+                Debug.Log("+P1 saved");
+                break;
+            case "+obj2(Clone)":
+                Database.Instance.countObj2++;
+                Debug.Log("+P2 saved");
+                break;
+            case "+obj3(Clone)":
+                Database.Instance.countObj3++;
+                Debug.Log("+P3 saved");
+                break;
+            case "+obj4(Clone)":
+                Database.Instance.countObj4++;
+                Debug.Log("+P4 saved");
+                break;
+            default: break;
+        }
+        Database.Instance.Save();
     }
 }
