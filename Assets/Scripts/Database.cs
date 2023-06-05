@@ -40,6 +40,7 @@ public class Database : MonoBehaviour
         else
         {
             Instance = this;
+            DontDestroyOnLoad(gameObject);
             Load();
         }
     }
