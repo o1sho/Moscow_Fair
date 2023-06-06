@@ -1,0 +1,22 @@
+fileFormatVersion: 2
+guid: 5b164ac7f174fd6499494d60477e1a45
+TrueTypeFontImporter:
+  externalObjects: {}
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontNames:
+  - AGLettericaC
+  fallbackFontReferences:
+  - {fileID: 12800000, guid: 03e754560b5a1a94f9bc831e1bd5a329, type: 3}
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  useLegacyBoundsCalculation: 0
+  shouldRoundAdvanceValue: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

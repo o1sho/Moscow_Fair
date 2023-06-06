@@ -6,6 +6,8 @@ public class ScoreController : MonoBehaviour
     [SerializeField] private TextMeshProUGUI _scoreText;
     public static int score;
 
+    private int _maxSCore;
+
     private void Start()
     {
         score = 0;
@@ -19,5 +21,9 @@ public class ScoreController : MonoBehaviour
     public static void ScoreUp()
     {
         score++;
+        if (score > Database.Instance.maxScore)
+        {
+            Database.Instance.maxScore = score;
+        }
     }
 }

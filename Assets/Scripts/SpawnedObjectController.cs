@@ -51,18 +51,22 @@ public class SpawnedObjectController : MonoBehaviour
         {
             case "+obj1(Clone)": 
                 Database.Instance.countObj1++;
+                ObjsController.instance.SetCountObj();
                 Debug.Log("+P1 saved");
                 break;
             case "+obj2(Clone)":
                 Database.Instance.countObj2++;
+                ObjsController.instance.SetCountObj();
                 Debug.Log("+P2 saved");
                 break;
             case "+obj3(Clone)":
                 Database.Instance.countObj3++;
+                ObjsController.instance.SetCountObj();
                 Debug.Log("+P3 saved");
                 break;
             case "+obj4(Clone)":
                 Database.Instance.countObj4++;
+                ObjsController.instance.SetCountObj();
                 Debug.Log("+P4 saved");
                 break;
             default: break;

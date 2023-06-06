@@ -34,6 +34,7 @@ public class SpawnController : MonoBehaviour
     private void Start()
     {
         Spawn();
+        Physics2D.gravity = new Vector2(0, -1);
     }
 
     public void Spawn()
