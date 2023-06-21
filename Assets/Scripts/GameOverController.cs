@@ -35,9 +35,4 @@ public class GameOverController : MonoBehaviour
         gameObject.SetActive(false);
         _gameIsPause = false;
     }
-
-    private void Update()
-    {
-        if (PlayerController.instance.health == 0) OpenPanel();
-    }
 }

@@ -22,7 +22,7 @@ public class SpawnedObjectController : MonoBehaviour
         if (collision.gameObject.tag == "BasketArea" && gameObject.tag == "-")
         {
             Destroy(gameObject);
-            PlayerController.instance.TakeDamage(1);
+            Database.Instance.hp--;
             Debug.Log("The -product catched! Player taked damage!");
         }
 
@@ -34,7 +34,7 @@ public class SpawnedObjectController : MonoBehaviour
         if (collision.gameObject.tag == "DownLine" && gameObject.tag == "+") // действия при контакте с нижний линией (+product)
         {
             Destroy(gameObject);
-            PlayerController.instance.TakeDamage(1);
+            Database.Instance.hp--;
             Debug.Log("The +product dropped... Player taked damage!");
         }
 

@@ -15,6 +15,7 @@ public class DataInfo
     public int countObj2;
     public int countObj3;
     public int countObj4;
+    public int selectedCharacter;
 }
 
 public class Database : MonoBehaviour
@@ -27,6 +28,8 @@ public class Database : MonoBehaviour
     public int countObj2;
     public int countObj3;
     public int countObj4;
+    public int selectedCharacter;
+    public int hp;
 
 
     public static Database Instance;
@@ -56,6 +59,7 @@ public class Database : MonoBehaviour
         data.countObj2 = countObj2;
         data.countObj3 = countObj3;
         data.countObj4 = countObj4;
+        data.selectedCharacter = selectedCharacter;
         bf.Serialize(file, data);
         file.Close();
         Debug.Log("Game data saved!");
@@ -76,6 +80,7 @@ public class Database : MonoBehaviour
             countObj2 = data.countObj2;
             countObj3 = data.countObj3;
             countObj4 = data.countObj4;
+            selectedCharacter = data.selectedCharacter;
             Debug.Log("Game data loaded!");
         }
         else

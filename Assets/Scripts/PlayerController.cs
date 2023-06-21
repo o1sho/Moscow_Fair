@@ -4,91 +4,73 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-    public static PlayerController instance;
 
-    [SerializeField] private GameObject[] playersTurns;
+    [SerializeField] private GameObject playerTurn1;
+    [SerializeField] private GameObject playerTurn2;
+    [SerializeField] private GameObject playerTurn3;
+    [SerializeField] private GameObject playerTurn4;
+    [SerializeField] private GameObject playerTurnCenter;
 
-    [SerializeField] private GameObject[] healthPoints;
-    public int health;
-
-    private void Awake()
-    {
-        instance = this;
-    }
+    [SerializeField] private GameObject[] hpSpriteUI;
+    [SerializeField] private int hp;
 
     private void Start()
     {
-        for (var i = 0; i < playersTurns.Length; i++)
+        playerTurnCenter.SetActive(true);
+        playerTurn1.SetActive(false);
+        playerTurn2.SetActive(false);
+        playerTurn3.SetActive(false);
+        playerTurn4.SetActive(false);
+
+        Database.Instance.hp = hp;
+        Debug.Log("Character have HP: " + hp);
+    }
+
+    private void Update()
+    {
+        switch (MoveController.instance.posCharacter)
         {
-            if (playersTurns[i].name == "PlayerCenter")
+            case 1:
+                playerTurn1.SetActive(true);
+                playerTurn2.SetActive(false);
+                playerTurn3.SetActive(false);
+                playerTurn4.SetActive(false);
+                playerTurnCenter.SetActive(false);
+                break;
+            case 2:
+                playerTurn1.SetActive(false);
+                playerTurn2.SetActive(true);
+                playerTurn3.SetActive(false);
+                playerTurn4.SetActive(false);
+                playerTurnCenter.SetActive(false);
+                break;
+            case 3:
+                playerTurn1.SetActive(false);
+                playerTurn2.SetActive(false);
+                playerTurn3.SetActive(true);
+                playerTurn4.SetActive(false);
+                playerTurnCenter.SetActive(false);
+                break;
+            case 4:
+                playerTurn1.SetActive(false);
+                playerTurn2.SetActive(false);
+                playerTurn3.SetActive(false);
+                playerTurn4.SetActive(true);
+                playerTurnCenter.SetActive(false);
+                break;
+        }
+
+        for (int i = 1; i <= hpSpriteUI.Length; i++)
+        {
+            if (i > Database.Instance.hp)
             {
-                playersTurns[i].SetActive(true);
+                hpSpriteUI[i - 1].SetActive(false);
             }
-            else playersTurns[i].SetActive(false);
+        }
+        if (Database.Instance.hp == 0)
+        {
+            GameOverController.instance.OpenPanel();
         }
     }
 
-    public void TurnLeftUp()
-    {
-        Debug.Log("Player Turm left up");
-        for (var i = 0; i < playersTurns.Length; i++)
-        {
-            if (playersTurns[i].name == "PlayerLeftUp")
-            {
-                playersTurns[i].SetActive(true);
-            }
-            else playersTurns[i].SetActive(false);
-        }
-    }
-
-    public void TurnRightUp()
-    {
-        Debug.Log("Player Turm right up");
-        for (var i = 0; i < playersTurns.Length; i++)
-        {
-            if (playersTurns[i].name == "PlayerRightUp")
-            {
-                playersTurns[i].SetActive(true);
-            }
-            else playersTurns[i].SetActive(false);
-        }
-    }
-
-    public void TurnLeftDown()
-    {
-        Debug.Log("Player Turm left down");
-        for (var i = 0; i < playersTurns.Length; i++)
-        {
-            if (playersTurns[i].name == "PlayerLeftDown")
-            {
-                playersTurns[i].SetActive(true);
-            }
-            else playersTurns[i].SetActive(false);
-        }
-    }
-
-    public void TurnRightDown()
-    {
-        Debug.Log("Player Turm right down");
-        for (var i = 0; i < playersTurns.Length; i++)
-        {
-            if (playersTurns[i].name == "PlayerRightDown")
-            {
-                playersTurns[i].SetActive(true);
-            }
-            else playersTurns[i].SetActive(false);
-        }
-    }
-
-    public void TakeDamage(int count)
-    {
-        health -= count;
-        for (int i = 0; i < healthPoints.Length; i++)
-        {
-            if (i < health)
-            {
-                healthPoints[i].SetActive(true);
-            } else healthPoints[i].SetActive(false);    
-        }
-    }
 }
