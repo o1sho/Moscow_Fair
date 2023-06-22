@@ -49,23 +49,27 @@ public class SpawnedObjectController : MonoBehaviour
     {
         switch (name)
         {
-            case "+obj1(Clone)": 
-                Database.Instance.countObj1++;
+            case "+obj1(Clone)":
+                if (Database.Instance.selectedCharacter == 1) Database.Instance.countObj1 = Database.Instance.countObj1 + 2;
+                else Database.Instance.countObj1++;
                 ObjsController.instance.SetCountObj();
                 Debug.Log("+P1 saved");
                 break;
             case "+obj2(Clone)":
-                Database.Instance.countObj2++;
+                if (Database.Instance.selectedCharacter == 1) Database.Instance.countObj2 = Database.Instance.countObj2 + 2;
+                else Database.Instance.countObj2++;
                 ObjsController.instance.SetCountObj();
                 Debug.Log("+P2 saved");
                 break;
             case "+obj3(Clone)":
-                Database.Instance.countObj3++;
+                if (Database.Instance.selectedCharacter == 1) Database.Instance.countObj3 = Database.Instance.countObj3 + 2;
+                else Database.Instance.countObj3++;
                 ObjsController.instance.SetCountObj();
                 Debug.Log("+P3 saved");
                 break;
             case "+obj4(Clone)":
-                Database.Instance.countObj4++;
+                if (Database.Instance.selectedCharacter == 1) Database.Instance.countObj4 = Database.Instance.countObj4 + 2;
+                else Database.Instance.countObj4++;
                 ObjsController.instance.SetCountObj();
                 Debug.Log("+P4 saved");
                 break;
