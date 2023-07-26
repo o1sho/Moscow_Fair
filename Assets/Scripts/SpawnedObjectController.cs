@@ -50,29 +50,29 @@ public class SpawnedObjectController : MonoBehaviour
         switch (name)
         {
             case "+obj1(Clone)":
-                if (Database.Instance.selectedCharacter == 1) Database.Instance.countObj1 = Database.Instance.countObj1 + 3; // Если выбран персонаж Заяц
-                else if (Database.Instance.selectedCharacter == 3) Database.Instance.countObj1 = Database.Instance.countObj1 + 2; // Если выбран персонаж Выдра
+                if (Database.Instance.selectedCharacter == 0) Database.Instance.countObj1 = Database.Instance.countObj1 + 3; // Если выбран персонаж Заяц
+                else if (Database.Instance.selectedCharacter == 2) Database.Instance.countObj1 = Database.Instance.countObj1 + 2; // Если выбран персонаж Выдра
                 else Database.Instance.countObj1++; // Если выбран персонаж Медведь
                 ObjsController.instance.SetCountObj();
                 Debug.Log("+P1 saved");
                 break;
             case "+obj2(Clone)":
-                if (Database.Instance.selectedCharacter == 1) Database.Instance.countObj2 = Database.Instance.countObj2 + 3; // Если выбран персонаж Заяц
-                else if (Database.Instance.selectedCharacter == 3) Database.Instance.countObj2 = Database.Instance.countObj2 + 2; // Если выбран персонаж Выдра
+                if (Database.Instance.selectedCharacter == 0) Database.Instance.countObj2 = Database.Instance.countObj2 + 3; // Если выбран персонаж Заяц
+                else if (Database.Instance.selectedCharacter == 2) Database.Instance.countObj2 = Database.Instance.countObj2 + 2; // Если выбран персонаж Выдра
                 else Database.Instance.countObj2++; // Если выбран персонаж Медведь
                 ObjsController.instance.SetCountObj();
                 Debug.Log("+P2 saved");
                 break;
             case "+obj3(Clone)":
-                if (Database.Instance.selectedCharacter == 1) Database.Instance.countObj3 = Database.Instance.countObj3 + 3; // Если выбран персонаж Заяц
-                else if (Database.Instance.selectedCharacter == 3) Database.Instance.countObj3 = Database.Instance.countObj3 + 2; // Если выбран персонаж Выдра
+                if (Database.Instance.selectedCharacter == 0) Database.Instance.countObj3 = Database.Instance.countObj3 + 3; // Если выбран персонаж Заяц
+                else if (Database.Instance.selectedCharacter == 2) Database.Instance.countObj3 = Database.Instance.countObj3 + 2; // Если выбран персонаж Выдра
                 else Database.Instance.countObj3++; // Если выбран персонаж Медведь
                 ObjsController.instance.SetCountObj();
                 Debug.Log("+P3 saved");
                 break;
             case "+obj4(Clone)":
-                if (Database.Instance.selectedCharacter == 1) Database.Instance.countObj4 = Database.Instance.countObj4 + 2; // Если выбран персонаж Заяц
-                else if (Database.Instance.selectedCharacter == 3) Database.Instance.countObj4 = Database.Instance.countObj4 + 2; // Если выбран персонаж Выдра
+                if (Database.Instance.selectedCharacter == 0) Database.Instance.countObj4 = Database.Instance.countObj4 + 2; // Если выбран персонаж Заяц
+                else if (Database.Instance.selectedCharacter == 2) Database.Instance.countObj4 = Database.Instance.countObj4 + 2; // Если выбран персонаж Выдра
                 else Database.Instance.countObj4++; // Если выбран персонаж Медведь
                 ObjsController.instance.SetCountObj();
                 Debug.Log("+P4 saved");
