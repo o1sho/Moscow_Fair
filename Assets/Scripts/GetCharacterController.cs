@@ -10,7 +10,7 @@ public class GetCharacterController : MonoBehaviour
     {
         for (int i = 0; i < characters.Length; i++)
         {
-            if (i != Database.Instance.selectedCharacter - 1) Destroy(characters[i]);
+            if (i != Database.Instance.selectedCharacter) Destroy(characters[i]);
         }
     }
 }

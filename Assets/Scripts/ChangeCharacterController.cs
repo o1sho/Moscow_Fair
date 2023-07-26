@@ -1,48 +1,64 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.TextCore.Text;
 using UnityEngine.UI;
 
 public class ChangeCharacterController : MonoBehaviour
 {
-    [SerializeField] private Button[] buttonCharacters;
+    [SerializeField] private GameObject[] characters;
 
 
     private void Start()
     {
-        if (Database.Instance.selectedCharacter == 0)
+        for (int i = 0; i < characters.Length; i++)
         {
-            SetCharacter(1);
-        } else
-        {
-            SetCharacter(Database.Instance.selectedCharacter);
-        }
-
-        for (int i = 0; i <= 2; i++)
-        {
-            if (i != Database.Instance.selectedCharacter - 1)
+            if (i == Database.Instance.selectedCharacter)
             {
-                Color currentColor = buttonCharacters[i].image.color;
-                buttonCharacters[i].image.color = new Color(currentColor.r, currentColor.g, currentColor.b, 0.5f);
+                characters[i].SetActive(true);
+                Database.Instance.selectedCharacter = i;
+                Database.Instance.Save();
             }
+            else characters[i].SetActive(false);
         }
     }
 
-    public void SetCharacter(int characterID)
+
+    public void ButtonRight()
     {
-        Database.Instance.selectedCharacter = characterID;
-        Database.Instance.Save();
-        for (int i = 0; i <= 2; i++)
+        if (Database.Instance.selectedCharacter < characters.Length - 1)
         {
-            Color currentColor = buttonCharacters[i].image.color;
-            if (i != characterID - 1)
-            {
-                buttonCharacters[i].image.color = new Color(currentColor.r, currentColor.g, currentColor.b, 0.5f);
-            } else buttonCharacters[i].image.color = new Color(currentColor.r, currentColor.g, currentColor.b, 1f);
+            Database.Instance.selectedCharacter++;
+            CharacterSelection(Database.Instance.selectedCharacter);
+            Debug.Log("Character selected " + Database.Instance.selectedCharacter);
+            Database.Instance.Save();
         }
-        Database.Instance.hp = 0;
-        Debug.Log("Set Character " + characterID + "!");
+        else Debug.Log("No more characters found!");
     }
 
+    public void ButtonLeft()
+    {
+        if (Database.Instance.selectedCharacter > 0)
+        {
+            Database.Instance.selectedCharacter--;
+            CharacterSelection(Database.Instance.selectedCharacter);
+            Debug.Log("Character selected " + Database.Instance.selectedCharacter);
+            Database.Instance.Save();
+        }
+        else Debug.Log("No more characters found!");
+    }
+
+
+
+    private void CharacterSelection(int idCharacter)
+    {
+        for (int i = 0; i < characters.Length; i++)
+        {
+            if (i == idCharacter)
+            {
+                characters[i].SetActive(true);
+            } else characters[i].SetActive(false);
+        }
+    }
 
 }
