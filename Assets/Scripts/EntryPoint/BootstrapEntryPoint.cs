@@ -23,6 +23,7 @@ public class BootstrapEntryPoint : MonoBehaviour
             yield return null;
         }
 
+        DataManagerJSON_PREFS.instance.SaveGameData();
         Debug.Log("All application services are initialized!");
 
         var buildIndex = SceneManager.GetActiveScene().buildIndex;

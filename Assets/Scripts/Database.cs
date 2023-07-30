@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Runtime.Serialization.Formatters.Binary;
 using UnityEngine;
+using UnityEngine.Playables;
 using static DataInfo;
 
 [Serializable]
@@ -53,6 +54,7 @@ public class Database : MonoBehaviour
         BinaryFormatter bf = new BinaryFormatter();
         FileStream file = File.Create(Application.persistentDataPath + "/MySaveData.dat");
         DataInfo data = new DataInfo();
+
         data.coins = coins;
         data.maxScore = maxScore;
         data.countObj1 = countObj1;

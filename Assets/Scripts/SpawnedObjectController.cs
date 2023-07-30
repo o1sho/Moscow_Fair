@@ -1,28 +1,24 @@
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class SpawnedObjectController : MonoBehaviour
 {
-
-    private void OnCollisionEnter2D(Collision2D collision)
-    {
-
-
-    }
-
+    [SerializeField] private int idObj;
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.tag == "BasketArea" && gameObject.tag == "+")
         {
             Destroy(gameObject);
-            ScoreController.ScoreUp();
-            SaveObj(this.gameObject.name);
+            ScoreControllerNewVer.ScoreUp();
+            SaveObj(this.idObj);
+            ObjsControllerNewVer.instance.SetCountObj();
             Debug.Log("The +product catched! Player saved health and is awarded a point!");
         }
 
         if (collision.gameObject.tag == "BasketArea" && gameObject.tag == "-")
         {
             Destroy(gameObject);
-            Database.Instance.hp--;
+            DataManagerJSON_PREFS.instance.SetHpTakeDamage(-1);
             Debug.Log("The -product catched! Player taked damage!");
         }
 
@@ -34,7 +30,7 @@ public class SpawnedObjectController : MonoBehaviour
         if (collision.gameObject.tag == "DownLine" && gameObject.tag == "+") // действия при контакте с нижний линией (+product)
         {
             Destroy(gameObject);
-            Database.Instance.hp--;
+            DataManagerJSON_PREFS.instance.SetHpTakeDamage(-1);
             Debug.Log("The +product dropped... Player taked damage!");
         }
 
@@ -45,40 +41,28 @@ public class SpawnedObjectController : MonoBehaviour
         }
     }
 
-    private void SaveObj(string name)
+    private void SaveObj(int idObj)
     {
-        switch (name)
+        if (DataManagerJSON_PREFS.instance.GetSelectedCharacter() == 0) //Заяц (x3)
         {
-            case "+obj1(Clone)":
-                if (Database.Instance.selectedCharacter == 0) Database.Instance.countObj1 = Database.Instance.countObj1 + 3; // Если выбран персонаж Заяц
-                else if (Database.Instance.selectedCharacter == 2) Database.Instance.countObj1 = Database.Instance.countObj1 + 2; // Если выбран персонаж Выдра
-                else Database.Instance.countObj1++; // Если выбран персонаж Медведь
-                ObjsController.instance.SetCountObj();
-                Debug.Log("+P1 saved");
-                break;
-            case "+obj2(Clone)":
-                if (Database.Instance.selectedCharacter == 0) Database.Instance.countObj2 = Database.Instance.countObj2 + 3; // Если выбран персонаж Заяц
-                else if (Database.Instance.selectedCharacter == 2) Database.Instance.countObj2 = Database.Instance.countObj2 + 2; // Если выбран персонаж Выдра
-                else Database.Instance.countObj2++; // Если выбран персонаж Медведь
-                ObjsController.instance.SetCountObj();
-                Debug.Log("+P2 saved");
-                break;
-            case "+obj3(Clone)":
-                if (Database.Instance.selectedCharacter == 0) Database.Instance.countObj3 = Database.Instance.countObj3 + 3; // Если выбран персонаж Заяц
-                else if (Database.Instance.selectedCharacter == 2) Database.Instance.countObj3 = Database.Instance.countObj3 + 2; // Если выбран персонаж Выдра
-                else Database.Instance.countObj3++; // Если выбран персонаж Медведь
-                ObjsController.instance.SetCountObj();
-                Debug.Log("+P3 saved");
-                break;
-            case "+obj4(Clone)":
-                if (Database.Instance.selectedCharacter == 0) Database.Instance.countObj4 = Database.Instance.countObj4 + 2; // Если выбран персонаж Заяц
-                else if (Database.Instance.selectedCharacter == 2) Database.Instance.countObj4 = Database.Instance.countObj4 + 2; // Если выбран персонаж Выдра
-                else Database.Instance.countObj4++; // Если выбран персонаж Медведь
-                ObjsController.instance.SetCountObj();
-                Debug.Log("+P4 saved");
-                break;
-            default: break;
+            DataManagerJSON_PREFS.instance.SetCountObj(idObj, +3);
         }
-        Database.Instance.Save();
+
+        if (DataManagerJSON_PREFS.instance.GetSelectedCharacter() == 1) //Медведь (x1)
+        {
+            DataManagerJSON_PREFS.instance.SetCountObj(idObj, +1);
+        }
+
+        if (DataManagerJSON_PREFS.instance.GetSelectedCharacter() == 2) //Выдра (x2)
+        {
+            DataManagerJSON_PREFS.instance.SetCountObj(idObj, +2);
+        }
     }
+
+    private void OnDisable()
+    {
+        DataManagerJSON_PREFS.instance.SaveGameData();
+    }
+
+
 }

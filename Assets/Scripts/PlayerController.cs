@@ -22,8 +22,8 @@ public class PlayerController : MonoBehaviour
         playerTurn3.SetActive(false);
         playerTurn4.SetActive(false);
 
-        Database.Instance.hp = hp;
-        Debug.Log("Character have HP: " + hp);
+        DataManagerJSON_PREFS.instance.SetHp(hp);
+        Debug.Log("Character have HP: " + DataManagerJSON_PREFS.instance.GetHp());
     }
 
     private void Update()
@@ -62,15 +62,16 @@ public class PlayerController : MonoBehaviour
 
         for (int i = 1; i <= hpSpriteUI.Length; i++)
         {
-            if (i > Database.Instance.hp)
+            if (i > DataManagerJSON_PREFS.instance.GetHp())
             {
                 hpSpriteUI[i - 1].SetActive(false);
             }
         }
-        if (Database.Instance.hp == 0)
+        if (DataManagerJSON_PREFS.instance.GetHp() == 0)
         {
             GameOverController.instance.OpenPanel();
         }
+
     }
 
 }

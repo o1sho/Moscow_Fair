@@ -35,4 +35,9 @@ public class GameOverController : MonoBehaviour
         gameObject.SetActive(false);
         _gameIsPause = false;
     }
+
+    private void OnEnable()
+    {
+        DataManagerJSON_PREFS.instance.SaveGameData();
+    }
 }

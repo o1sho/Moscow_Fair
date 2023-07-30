@@ -1,7 +1,7 @@
 using TMPro;
 using UnityEngine;
 
-public class ScoreController : MonoBehaviour
+public class ScoreControllerNewVer : MonoBehaviour
 {
     [SerializeField] private TextMeshProUGUI _scoreText;
     public static int score;
@@ -16,16 +16,6 @@ public class ScoreController : MonoBehaviour
         _scoreText.text = score.ToString();
     }
 
-    /*
-    public static void ScoreUp()
-    {
-        score++;
-        if (score > Database.Instance.maxScore)
-        {
-            Database.Instance.maxScore = score;
-        }
-    }
-    */
     public static void ScoreUp()
     {
         score++;
@@ -33,5 +23,10 @@ public class ScoreController : MonoBehaviour
         {
             DataManagerJSON_PREFS.instance.SetHighScore(score);
         }
+    }
+
+    private void OnDisable()
+    {
+        DataManagerJSON_PREFS.instance.SaveGameData();
     }
 }
