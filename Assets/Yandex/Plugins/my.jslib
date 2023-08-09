@@ -58,7 +58,6 @@
     },
 */
 
-/*
     LeaderBoard: function(maxScore){
       ysdk.getLeaderboards()
       .then(lb => {
@@ -66,6 +65,7 @@
       });
     },
 
+/*
     GetLang: function (){
       var lang = ysdk.environment.i18n.lang;
       var bufferSize = lengthBytesUTF8(lang) + 1;

@@ -12,6 +12,7 @@ public class SpawnedObjectController : MonoBehaviour
             ScoreControllerNewVer.ScoreUp();
             SaveObj(this.idObj);
             ObjsControllerNewVer.instance.SetCountObj();
+            SoundController.instance.PlaySound(1);
             Debug.Log("The +product catched! Player saved health and is awarded a point!");
         }
 
@@ -19,6 +20,7 @@ public class SpawnedObjectController : MonoBehaviour
         {
             Destroy(gameObject);
             DataManagerJSON_PREFS.instance.SetHpTakeDamage(-1);
+            SoundController.instance.PlaySound(1);
             Debug.Log("The -product catched! Player taked damage!");
         }
 

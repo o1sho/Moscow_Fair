@@ -1,3 +1,4 @@
+using System.Runtime.InteropServices;
 using TMPro;
 using UnityEngine;
 
@@ -5,6 +6,9 @@ public class ScoreController : MonoBehaviour
 {
     [SerializeField] private TextMeshProUGUI _scoreText;
     public static int score;
+
+    [DllImport("__Internal")]
+    private static extern void LeaderBoard(int maxScore);
 
     private void Start()
     {
@@ -26,12 +30,21 @@ public class ScoreController : MonoBehaviour
         }
     }
     */
-    public static void ScoreUp()
+    public void ScoreUp()
     {
         score++;
         if (score > DataManagerJSON_PREFS.instance.GetHighScore())
         {
             DataManagerJSON_PREFS.instance.SetHighScore(score);
+            SaveLeaderBoard();
         }
+
+    }
+
+    private void SaveLeaderBoard()
+    {
+#if !UNITY_EDITOR && UNITY_WEBGL
+            LeaderBoard(DataManagerJSON_PREFS.instance.GetHighScore());
+#endif
     }
 }

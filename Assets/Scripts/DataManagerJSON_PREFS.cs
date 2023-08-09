@@ -16,6 +16,8 @@ public class Data
     public int countObj3;
     public int selectedCharacter;
     public int hp;
+    public List<int> characterBuyedID = new List<int>() {0};
+    public bool muteVolume;
 }
 
 public class DataManagerJSON_PREFS : MonoBehaviour
@@ -56,6 +58,15 @@ public class DataManagerJSON_PREFS : MonoBehaviour
     private void Start()
     {
 
+    }
+
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.R))
+        {
+            data.highScore = 0;
+        } 
+           
     }
 
     public void SaveGameData()
@@ -183,4 +194,30 @@ public class DataManagerJSON_PREFS : MonoBehaviour
         return data.hp;
     }
     //
+
+    //charactedBuyedID
+    public void SetCharactedBuyedID(int idCharacter)
+    {
+        data.characterBuyedID.Add(idCharacter);
+    }
+
+    public bool GetCharacterBuyedID(int idCharacter)
+    {
+        return data.characterBuyedID.Contains(idCharacter);
+    }
+    //
+
+    //muteVolume
+    public void SetMuteVolume(bool mute)
+    {
+        if (mute)
+        {
+            data.muteVolume = true;
+        } else data.muteVolume = false;
+    }
+
+    public bool GetMuteVolume()
+    {
+        return data.muteVolume;
+    }
 }
