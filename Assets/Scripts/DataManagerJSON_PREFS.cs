@@ -22,14 +22,6 @@ public class Data
 
 public class DataManagerJSON_PREFS : MonoBehaviour
 {
-    //Yandex Server Save
-    [DllImport("__Internal")]
-    private static extern void SaveExtern(string data);
-
-    [DllImport("__Internal")]
-    private static extern void LoadExtern();
-
-
     public Data data;
     private string saveKey;
 
@@ -41,13 +33,7 @@ public class DataManagerJSON_PREFS : MonoBehaviour
             instance = this;
             DontDestroyOnLoad(gameObject);
 
-#if UNITY_EDITOR
             LoadGameData();
-#endif
-#if !UNITY_EDITOR && UNITY_WEBGL
-            LoadExtern();
-#endif
-
         }
         else
         {
@@ -72,13 +58,9 @@ public class DataManagerJSON_PREFS : MonoBehaviour
     public void SaveGameData()
     {
         string jsonData = JsonUtility.ToJson(data);
-#if UNITY_EDITOR
+
         PlayerPrefs.SetString(saveKey, jsonData);
         PlayerPrefs.Save();
-#endif
-#if !UNITY_EDITOR && UNITY_WEBGL
-        SaveExtern(jsonData);
-#endif
     }
 
     public void LoadGameData()

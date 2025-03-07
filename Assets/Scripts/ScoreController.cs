@@ -7,9 +7,6 @@ public class ScoreController : MonoBehaviour
     [SerializeField] private TextMeshProUGUI _scoreText;
     public static int score;
 
-    [DllImport("__Internal")]
-    private static extern void LeaderBoard(int maxScore);
-
     private void Start()
     {
         score = 0;
@@ -43,8 +40,6 @@ public class ScoreController : MonoBehaviour
 
     private void SaveLeaderBoard()
     {
-#if !UNITY_EDITOR && UNITY_WEBGL
-            LeaderBoard(DataManagerJSON_PREFS.instance.GetHighScore());
-#endif
+
     }
 }
